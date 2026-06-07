@@ -11,3 +11,7 @@ const applySchema = Joi.object({
   education: Joi.string().required(),
   marital_status: Joi.string().required()
 });
+
+module.exports = {
+  applySchema
+};
