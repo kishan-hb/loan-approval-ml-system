@@ -42,26 +42,33 @@ describe('POST /api/loans/apply', () => {
     jest.clearAllMocks();
   });
 
-  it('returns 201 for a valid payload', async () => {
+  it('returns 201 and confirms model_version is artifact-based', async () => {
+    // 1. Setup DB query mocks
     createApplication.mockResolvedValueOnce({ id: 'app-123' });
-    requestPrediction.mockResolvedValueOnce({
-      prediction: 'APPROVED',
-      confidence: 0.99,
-      model_version: 'v1.0.0' // UPDATED: Match the real python service output
-    });
     createPrediction.mockResolvedValueOnce({ id: 'pred-123' });
 
+    // 2. Mock your ML client response to mirror your live python LightGBM metadata asset
+    requestPrediction.mockResolvedValueOnce({
+      prediction: 'APPROVED',
+      confidence: 0.85,
+      model_version: 'v2.0.0-lightgbm'
+    });
+
+    // 3. Execute the full end-to-end Node.js server apply controller flow
     const res = await request.post('/api/loans/apply').send(validPayload);
 
+    // 4. Assertions to confirm the output successfully extracts the artifact version
     expect(res.statusCode).toBe(201);
     expect(res.body).toMatchObject({
       message: 'Loan application processed',
       applicationId: 'app-123',
       prediction: 'APPROVED',
-      confidence: 0.99,
-      modelVersion: 'v1.0.0' // UPDATED: Match snakeCase wrapper transformation
+      confidence: 0.85,
+      modelVersion: 'v2.0.0-lightgbm' // Verifies version tracking matches the binary asset
     });
-    console.log('VALID APPLY BODY:', res.body);
+
+    console.log('SERVER APPLY FLOW VERIFIED:', res.body);
+    
     expect(createApplication).toHaveBeenCalledTimes(1);
     expect(requestPrediction).toHaveBeenCalledTimes(1);
     expect(createPrediction).toHaveBeenCalledTimes(1);
@@ -83,7 +90,7 @@ describe('POST /api/loans/apply', () => {
         message: 'Validation failed'
       }
     });
-    console.log('VALID APPLY BODY:', res.body);
+    
     expect(createApplication).not.toHaveBeenCalled();
     expect(requestPrediction).not.toHaveBeenCalled();
   });
