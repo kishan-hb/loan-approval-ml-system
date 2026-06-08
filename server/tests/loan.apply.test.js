@@ -47,7 +47,7 @@ describe('POST /api/loans/apply', () => {
     requestPrediction.mockResolvedValueOnce({
       prediction: 'APPROVED',
       confidence: 0.99,
-      model_version: 'v0-baseline'
+      model_version: 'v1.0.0' // UPDATED: Match the real python service output
     });
     createPrediction.mockResolvedValueOnce({ id: 'pred-123' });
 
@@ -59,7 +59,7 @@ describe('POST /api/loans/apply', () => {
       applicationId: 'app-123',
       prediction: 'APPROVED',
       confidence: 0.99,
-      modelVersion: 'v0-baseline'
+      modelVersion: 'v1.0.0' // UPDATED: Match snakeCase wrapper transformation
     });
     console.log('VALID APPLY BODY:', res.body);
     expect(createApplication).toHaveBeenCalledTimes(1);
