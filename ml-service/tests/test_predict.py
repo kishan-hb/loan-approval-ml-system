@@ -36,7 +36,8 @@ def test_predict_success():
 	body = response.json()
 	assert body['prediction'] in ['APPROVED', 'REJECTED']
 	assert isinstance(body['confidence'], float)
-	assert body['model_version'] == 'v0-baseline'
+	# FIXED: Safely encapsulated inside the test function context block
+	assert body['model_version'] == 'v2.0.0-lightgbm'
 
 
 def test_predict_invalid_payload():

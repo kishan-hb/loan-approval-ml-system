@@ -1,0 +1,24 @@
+{
+  "model_version": "v2.0.0-lightgbm",
+  "metrics": {
+    "accuracy": 0.655,
+    "f1": 0.7416,
+    "roc_auc": 0.6693
+  },
+  "target_mapping": {
+    "APPROVED": 1,
+    "REJECTED": 0
+  },
+  "features": [
+    "applicant_income",
+    "coapplicant_income",
+    "loan_amount",
+    "loan_term",
+    "credit_history",
+    "employment_status",
+    "property_area",
+    "dependents",
+    "education",
+    "marital_status"
+  ]
+}
