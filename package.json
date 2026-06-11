@@ -1,0 +1,39 @@
+{
+  "name": "ai--loan-approval-prediction",
+  "version": "1.0.0",
+  "description": "An end-to-end portfolio project that predicts loan approval using a two-service backend architecture:",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kishan-hb/loan-approval-ml-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kishan-hb/loan-approval-ml-system/issues"
+  },
+  "homepage": "https://github.com/kishan-hb/loan-approval-ml-system#readme",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.9.2",
+    "@types/supertest": "^7.2.0",
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.0"
+  }
+}
