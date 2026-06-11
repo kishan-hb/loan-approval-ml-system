@@ -11,7 +11,9 @@
     "start": "node index.js",
     "test": "jest --runInBand",
     "test:watch": "jest --watch",
-    "test:ci": "jest --runInBand --coverage"
+    "test:ci": "jest --runInBand --coverage",
+   "test:integration": "jest tests/predict.integration.test.js"
+
   },
   "jest": {
     "testEnvironment": "node",
