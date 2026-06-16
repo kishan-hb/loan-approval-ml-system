@@ -1,5 +1,7 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  // FIXED: Added content array so Tailwind knows to scan your React files
+  darkMode: 'class',
+  
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -24,4 +26,4 @@ module.exports = {
   },
   variants: {},
   plugins: []
-}
+}; 
